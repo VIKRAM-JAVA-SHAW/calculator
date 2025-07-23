@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .container{
+           height: 615px;
+    width: 384px;
+    background-color:rgb(94, 14, 145);
+    position: absolute;
+    left: 480px;
+    border: 4px solid black;
+    border-radius: 6%;
+        }
+        #screen{
+            width:100%;
+            height:30%;
+            background-color: rgba(23,23,23,0.8);
+            border-radius: 8%;
+            color: white;
+            font-size: 80px;
+            overflow-x: scroll;
+        }
+        .btn{
+            height:85px;
+            width:93px;
+            border-radius: 50%;
+            color: white;
+            justify-self: center;
+            align-self: center;
+            background-color: rgba(23,23,23,0.5);
+            transition-delay: 0ms;
+            transition-duration: 1s;
+            transition-timing-function: ease-in-out;
+        }
+        .sep{
+            width:100%;
+            height:4px;
+            border-radius: 50%;
+            background-image: linear-gradient(yellow,red,blue) ;
+        }
+       .container::after{
+            content: "";
+    height: 612px;
+    width: 384px;
+    background-image: linear-gradient(red, blue);
+    position: absolute;
+    left: 480px;
+    border: 5px solid black;
+    border-radius: 5%;
+    left: -3px;
+    top: -4px;
+    z-index: -1;
+    filter: blur(20px);
+       }
+       .container::before{
+        content: "";
+    height: 630px;
+    width: 400px;
+    background-image: linear-gradient(red, blue,brown);
+    position: absolute;
+    left: 480px;
+    border: 5px solid black;
+    border-radius: 5%;
+    left: -13px;
+    top: -10px;
+    z-index: -1;
+       }
+       .btn:hover{
+         filter: blur(1.5px);
+       }
+       .calc{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: repeat(5,1fr);
+       }
+    </style>
+</head>
+<body style="background-color: black;">
+    <div class="container">
+        <div id="screen"></div>
+        <div class="sep"></div>
+        <div class="calc">
+            <button class="btn">AC</button>
+            <button class="btn">%</button>
+            <button class="btn">del</button>
+            <button class="btn">/</button>
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn">*</button>
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn">-</button>
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn">+</button>
+            <button class="btn">00</button>
+            <button class="btn">0</button>
+            <button class="btn">.</button>
+            <button class="btn">=</button>
+        </div>
+    </div>
+    <script>
+        let a=document.getElementsByClassName("btn");
+let string="";
+for(let i=0;i<=19;i++)
+{
+if(i==0)
+{
+    a[i].addEventListener('click',()=>{
+        string="";
+        document.getElementById("screen").innerHTML=string;
+    })
+}
+else if(i==2)
+{
+    a[i].addEventListener('click',()=>{
+        if(string.length==1)
+        {
+            string="";
+            document.getElementById("screen").innerHTML=string;
+        }
+        else
+        {
+           string=string.substring(0,string.length-1);
+           document.getElementById("screen").innerHTML=string;
+        }
+    })
+}
+else if(i==19)
+{
+  a[i].addEventListener('click',()=>{
+          string=eval(string);
+        document.getElementById("screen").innerHTML=string;
+    })
+}
+else
+{
+    a[i].addEventListener('click',()=>{
+          string=string+a[i].innerHTML;
+        document.getElementById("screen").innerHTML=string;
+    })
+}
+}
+    </script>
+</body>
+</html>
